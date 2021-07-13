@@ -6,7 +6,7 @@ namespace App\Enum;
 
 class BinanceEndpointSecurityProcess
 {
-    public const FREELY = [
+    public const FREE = [
         BinanceSecurityType::NONE,
     ];
 
@@ -15,7 +15,7 @@ class BinanceEndpointSecurityProcess
         BinanceSecurityType::MARKET_DATA,
     ];
 
-    public const API_KEY_AND_SIGNATURE = [
+    public const SIGNED = [
         BinanceSecurityType::TRADE,
         BinanceSecurityType::USER_DATA,
     ];
