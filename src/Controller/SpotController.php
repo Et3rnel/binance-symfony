@@ -2,23 +2,20 @@
 
 namespace App\Controller;
 
-use App\Action\ApiKeyAndSignatureHttpClient;
+use App\Action\GetExchangeInfoAction;
+use App\Action\PostMarketOrderAction;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SpotController extends AbstractController
 {
-    #[Route('/place-order', name: 'place_order')]
-    public function placeOrder(ApiKeyAndSignatureHttpClient $client): Response
+    #[Route('/spot', name: 'spot')]
+    public function placeOrder(
+        GetExchangeInfoAction $getExchangeInfoAction,
+        PostMarketOrderAction $postMarketOrderAction
+    ): Response
     {
-        $response = $client->request(Request::METHOD_GET, '/api/v3/myTrades', [
-            'query' => [
-                'symbol' => 'BNBUSDT',
-            ],
-        ]);
-
-        return $this->json($response->toArray(false));
+        return $this->json($postMarketOrderAction->call()->toArray(false));
     }
 }

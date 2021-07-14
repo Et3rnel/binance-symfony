@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Action;
+namespace App\HttpClient;
 
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,8 +88,6 @@ class ApiKeyAndSignatureHttpClient implements HttpClientInterface
 
         $options['query'] = $queryParameters;
         $options['body'] = $bodyParameters;
-
-//        dd($options);
 
         return $this->decoratedClient->request($method, $url, $options);
     }
